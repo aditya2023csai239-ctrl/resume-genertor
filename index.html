@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Resume Studio home">
+      <span class="brand-mark">R</span>
+      <span>resume<span class="brand-dot">.</span>studio</span>
+    </a>
+    <div class="topbar-actions">
+      <span class="save-status"><span class="status-dot"></span> Saved just now</span>
+      <button class="ghost-button" id="reset-btn" type="button">Start over</button>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <section class="intro">
+      <div>
+        <p class="eyebrow">Your next chapter starts here</p>
+        <h1>Build a resume<br><em>that feels like you.</em></h1>
+        <p class="intro-copy">Answer a few simple questions and we’ll shape your experience into a resume you’ll feel confident sending.</p>
+      </div>
+      <div class="progress-card">
+        <div class="progress-label"><span>Profile completion</span><strong id="progress-value">20%</strong></div>
+        <div class="progress-track"><span id="progress-bar"></span></div>
+        <p>It only takes about 5 minutes</p>
+      </div>
+    </section>
+
+    <div class="workspace">
+      <aside class="step-nav" aria-label="Resume sections">
+        <p class="nav-label">LET’S GET STARTED</p>
+        <button class="step active" data-step="0"><span class="step-number">01</span><span><b>Basics</b><small>Who you are</small></span><i>✓</i></button>
+        <button class="step" data-step="1"><span class="step-number">02</span><span><b>Experience</b><small>Where you’ve been</small></span><i>✓</i></button>
+        <button class="step" data-step="2"><span class="step-number">03</span><span><b>Education</b><small>What you’ve learned</small></span><i>✓</i></button>
+        <button class="step" data-step="3"><span class="step-number">04</span><span><b>Skills</b><small>What you’re great at</small></span><i>✓</i></button>
+        <button class="step" data-step="4"><span class="step-number">05</span><span><b>Finish</b><small>Make it yours</small></span><i>✓</i></button>
+        <div class="tip"><span>✦</span><div><b>Small tip</b><p>Keep it focused. A great resume is usually 1–2 pages.</p></div></div>
+      </aside>
+
+      <section class="form-panel">
+        <form id="resume-form">
+          <div class="form-step active" data-panel="0">
+            <p class="section-kicker">01 / BASICS</p>
+            <h2>Let’s start with you.</h2>
+            <p class="section-description">This is the first thing a recruiter will see. Make it clear, warm, and memorable.</p>
+            <div class="form-grid">
+              <label class="field span-2"><span>Full name <b>*</b></span><input name="name" placeholder="e.g. Maya Rodriguez" required></label>
+              <label class="field"><span>Professional title</span><input name="title" placeholder="e.g. Product Designer"></label>
+              <label class="field"><span>Location</span><input name="location" placeholder="e.g. Austin, TX"></label>
+              <label class="field"><span>Email address <b>*</b></span><input name="email" type="email" placeholder="maya@email.com" required></label>
+              <label class="field"><span>Phone number</span><input name="phone" placeholder="+1 (555) 000-0000"></label>
+              <label class="field"><span>LinkedIn</span><input name="linkedin" placeholder="linkedin.com/in/yourname"></label>
+              <label class="field"><span>Portfolio / website</span><input name="website" placeholder="yourwebsite.com"></label>
+              <label class="field span-2"><span>Professional summary</span><textarea name="summary" rows="5" placeholder="In 2–4 sentences, share what you do best, your strongest qualities, and the kind of role you’re looking for."></textarea><small class="field-hint">Aim for a confident, specific introduction.</small></label>
+            </div>
+          </div>
+
+          <div class="form-step" data-panel="1">
+            <p class="section-kicker">02 / EXPERIENCE</p>
+            <h2>Tell us where you’ve made an impact.</h2>
+            <p class="section-description">Start with your most recent role. You can add as many positions as you need.</p>
+            <div id="experience-list"></div>
+            <button type="button" class="add-button" id="add-experience">＋ Add another position</button>
+          </div>
+
+          <div class="form-step" data-panel="2">
+            <p class="section-kicker">03 / EDUCATION</p>
+            <h2>What shaped your point of view?</h2>
+            <p class="section-description">Degrees, certifications, bootcamps, or courses — include what supports your story.</p>
+            <div id="education-list"></div>
+            <button type="button" class="add-button" id="add-education">＋ Add another education</button>
+          </div>
+
+          <div class="form-step" data-panel="3">
+            <p class="section-kicker">04 / SKILLS</p>
+            <h2>Show them what you’re great at.</h2>
+            <p class="section-description">Add the skills that make you effective in the role you want next.</p>
+            <label class="field"><span>Skills <b>*</b></span><input id="skills-input" name="skills" placeholder="Type a skill and press Enter (e.g. Figma)"><small class="field-hint">Add up to 12 skills. Keep them relevant to your target role.</small></label>
+            <div class="skill-chips" id="skill-chips"></div>
+            <label class="field summary-field"><span>Optional: notable achievement</span><textarea name="achievement" rows="4" placeholder="A proud win, award, or result you’d like to highlight."></textarea></label>
+          </div>
+
+          <div class="form-step" data-panel="4">
+            <p class="section-kicker">05 / FINISH</p>
+            <h2>One last touch.</h2>
+            <p class="section-description">Choose a style that feels right, then preview and download your finished resume.</p>
+            <div class="style-picker"><label class="style-option selected"><input type="radio" name="style" value="editorial" checked><span class="style-sample editorial-sample"><b>R</b><i></i><i></i></span><strong>Editorial</strong><small>Warm & distinctive</small></label><label class="style-option"><input type="radio" name="style" value="classic"><span class="style-sample classic-sample"><b>R</b><i></i><i></i></span><strong>Classic</strong><small>Clean & traditional</small></label><label class="style-option"><input type="radio" name="style" value="minimal"><span class="style-sample minimal-sample"><b>R</b><i></i><i></i></span><strong>Minimal</strong><small>Simple & focused</small></label></div>
+            <div class="finish-note"><span>✦</span><div><b>Your resume is ready to shine.</b><p>Review the live preview on the right. You can always come back and refine your answers.</p></div></div>
+          </div>
+
+          <div class="form-footer"><button type="button" class="back-button" id="back-btn">← Back</button><button type="button" class="primary-button" id="next-btn">Continue <span>→</span></button></div>
+        </form>
+      </section>
+
+      <aside class="preview-wrap">
+        <div class="preview-header"><span>LIVE PREVIEW</span><button type="button" class="download-button" id="download-btn">Download PDF <span>↓</span></button></div>
+        <div class="resume-page" id="resume-preview"></div>
+        <p class="preview-footnote">Your resume updates as you type <span>●</span></p>
+      </aside>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
